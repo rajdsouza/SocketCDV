@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin id="au.com.rcgcorp.socketcdv" 
+	version="0.1" 
+		xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+		xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>SocketCDV</name>
+    <js-module name="SocketCDV" src="www/SocketCDV.js">
+        <clobbers target="SocketCDV" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="SocketCDV">
+            	<param name="ios-package" value="SocketCDV" />
+            </feature>
+        </config-file>
+        
+         <config-file target="*-Info.plist" parent="UISupportedExternalAccessoryProtocols">
+<key>UISupportedExternalAccessoryProtocols</key>
+<array>
+    <string>com.socketmobile.chs</string>
+</array>
+</config-file>
+        
+        
+        <header-file src="src/ios/SocketCDV.h" />
+        <source-file src="src/ios/SocketCDV.m" />
+        
+        
+        <framework src="ExternalAccessory.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="AVFoundation.framework" />
+        
+    </platform>
+</plugin>
