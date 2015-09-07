@@ -24,4 +24,15 @@ The plugin will execute barcodeData function which can be used to access the rea
                 console.log(barcode);
                 // your code here
             };
-</script>            
+</script>
+-------------------------------
+If there is enough need of this plugin I can improve it. This is just a test project I did. 
+
+Future Feature Improvements:
+1. Add a custom function which can recieve barcode read event.
+2. A way to display the device which is connected.
+
+
+
+
+
