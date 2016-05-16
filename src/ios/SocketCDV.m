@@ -64,12 +64,12 @@
     
     NSLog(@"%@({ message: '%@' });", self.barcodeData, data);
     NSString *jsStatement = [NSString stringWithFormat:@"barcodeData(\"%@\",\"%@\");",data,type ];  //@"handleOpenURL(\"%@\");"
-    [self.webView stringByEvaluatingJavaScriptFromString:jsStatement];
+    [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsStatement];
     
     
 }
 
--(void) onDecodedData:(DeviceInfo *)device decodedData:(id<ISktScanDecodedData>)decodedData{
+-(void) onDecodedData:(DeviceInfo *)device decodedData:(ISktScanDecodedData*)decodedData{
 
     
     NSString *barcode = [NSString stringWithUTF8String:(const char *)[decodedData getData]];
@@ -104,12 +104,12 @@
     
 }
 
--(void)onGetSymbologyDpm:(id<ISktScanObject>)scanObj{
+-(void)onGetSymbologyDpm:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
         DeviceInfo* deviceInfo=[ScanApi getDeviceInfoFromScanObject:scanObj];
         if(deviceInfo!=nil){
-            id<ISktScanSymbology>symbology=[[scanObj Property]Symbology];
+            ISktScanSymbology*symbology=[[scanObj Property]Symbology];
             if([symbology getStatus]==kSktScanSymbologyStatusDisable){
                 [ScanApi postSetSymbologyInfo:deviceInfo SymbologyId:kSktScanSymbologyDirectPartMarking Status:TRUE Target:self Response:@selector(onSetSymbology:)];
             }
@@ -122,7 +122,7 @@
 }
 
 // callback received when the Set Symbology Status is completed
--(void)onSetSymbology:(id<ISktScanObject>)scanObj{
+-(void)onSetSymbology:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(!SKTSUCCESS(result)){
         // display an error message saying a symbology cannot be set
@@ -132,7 +132,7 @@
 /**
  *
  */
--(void) onSetDataConfirmationMode:(id<ISktScanObject>)scanObj{
+-(void) onSetDataConfirmationMode:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
         NSLog(@"DataConfirmation Mode OK");
@@ -177,7 +177,7 @@
 /**
  *
  */
--(void) onDataConfirmation:(id<ISktScanObject>)scanObj{
+-(void) onDataConfirmation:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
         NSLog(@"Data Confirmed OK");
@@ -190,7 +190,7 @@
 /**
  *
  */
--(void) onSetLocalDecodeAction:(id<ISktScanObject>)scanObj{
+-(void) onSetLocalDecodeAction:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
         NSLog(@"Local Decode Action OK");
@@ -203,10 +203,10 @@
 /**
  *
  */
--(void) onGetSoftScanStatus:(id<ISktScanObject>)scanObj{
+-(void) onGetSoftScanStatus:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
-        id<ISktScanProperty> property=[scanObj Property];
+        ISktScanProperty* property=[scanObj Property];
         if([property getByte]==kSktScanEnableSoftScan){
             NSLog(@"SoftScan is ENABLED");
             _softScannerEnabled=TRUE;
@@ -226,7 +226,7 @@
 /**
  *
  */
--(void) onSetSoftScanStatus:(id<ISktScanObject>)scanObj{
+-(void) onSetSoftScanStatus:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
         NSLog(@"SoftScan set status success");
@@ -239,7 +239,7 @@
 /**
  *
  */
--(void) onSetTrigger:(id<ISktScanObject>)scanObj{
+-(void) onSetTrigger:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
         NSLog(@"Trigger set success");
@@ -249,10 +249,10 @@
     }
 }
 
--(void) onGetScanApiVersion:(id<ISktScanObject>)scanObj{
+-(void) onGetScanApiVersion:(ISktScanObject*)scanObj{
     SKTRESULT result=[[scanObj Msg]Result];
     if(SKTSUCCESS(result)){
-        id<ISktScanProperty>property=[scanObj Property];
+         ISktScanProperty* property=[scanObj Property];
         if([property getType]==kSktScanPropTypeVersion){
             scanApiVersion=[NSString stringWithFormat:@"%lx.%lx.%lx.%ld",
                             [[property Version]getMajor],
