@@ -64,7 +64,9 @@
     
     NSLog(@"%@({ message: '%@' });", self.barcodeData, data);
     NSString *jsStatement = [NSString stringWithFormat:@"barcodeData(\"%@\",\"%@\");",data,type ];  //@"handleOpenURL(\"%@\");"
-    [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsStatement];
+    if ([self.webView isKindOfClass:[UIWebView class]]) {
+        [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsStatement];
+    }
     
     
 }
