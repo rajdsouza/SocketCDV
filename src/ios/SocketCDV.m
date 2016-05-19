@@ -64,6 +64,9 @@
     
     NSLog(@"%@({ message: '%@' });", self.barcodeData, data);
     
+    // Strip any newline characters
+    data = [[data componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@""];
+    
     NSString *jsStatement = [NSString stringWithFormat:@"SocketCDV.onBarcodeData('%@', '%@');",data, type ];
     
     if ([self.webView isKindOfClass:[UIWebView class]]) {
