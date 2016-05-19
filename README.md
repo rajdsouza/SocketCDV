@@ -5,8 +5,21 @@ Inspiration from https://github.com/ttatarinov/lineapro-phonegap-plugin
 
 
 ## Quick start
-To start plugin need to execute 'SocketCDV.initDT()' method. 
-Recommended to add this into 'deviceready' handler.
+To start plugin need to execute `SocketCDV.initDT()` method (after the `deviceready` event has fired).
+
+Pass in a callback function to handle the barcode data as it is returned.
+
+```js
+
+// Barcode handler
+var handleBarcode = function(barcodeData, barcodeType) {
+   console.info("Barcode data: " + barcodeData);
+};
+
+// Initialise the barcode reader, pass the barcode handler function as the only parameter
+SocketCDV.initDT(handleBarcode);
+
+```
 
 ## Device support
 All what the framework supports. Its needs to be downloaded sepatetly from socket mobiles developer portal.
@@ -16,16 +29,6 @@ All what the framework supports. Its needs to be downloaded sepatetly from socke
 * Automatically connects device when available
 * Reads barcode and send it to barcodeData function
 
-## capturing the barcode read event
-The plugin will execute barcodeData function which can be used to access the read barcode
-
-<script>
-            var barcodeData = function (barcode, type) {
-                console.log(barcode);
-                // your code here
-            };
-</script>
--------------------------------
 If there is enough need of this plugin I can improve it. This is just a test project I did. 
 
 Future Feature Improvements:
