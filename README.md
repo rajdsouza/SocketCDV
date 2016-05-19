@@ -33,8 +33,8 @@ Any device supported by the Socket SDK framework.
 * Reads barcode and send it to barcodeData function
 
 Future Feature Improvements:
-1. ~~Add a custom function which can recieve barcode read event.~~
-2. A way to display the device which is connected.
+1. Add a custom function which can recieve barcode read event
+2. A way to display the device which is connected
 
 
 
