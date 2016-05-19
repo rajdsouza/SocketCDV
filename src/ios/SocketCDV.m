@@ -63,7 +63,9 @@
 - (void)sendBarcodeData:(NSString *)data type:(NSString *) type {
     
     NSLog(@"%@({ message: '%@' });", self.barcodeData, data);
-    NSString *jsStatement = [NSString stringWithFormat:@"barcodeData(\"%@\",\"%@\");",data,type ];  //@"handleOpenURL(\"%@\");"
+    
+    NSString *jsStatement = [NSString stringWithFormat:@"SocketCDV.onBarcodeData('%@', '%@');",data, type ];
+    
     if ([self.webView isKindOfClass:[UIWebView class]]) {
         [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsStatement];
     }
@@ -75,7 +77,7 @@
 
     
     NSString *barcode = [NSString stringWithUTF8String:(const char *)[decodedData getData]];
-    NSLog(@"Barcode scanned: %@",barcode);
+    NSLog(@"Barcode scanned: -%@-",barcode);
     //NSLog(@"barcodeNSData: barcode - %@, type - %@", [[NSString alloc] initWithData:barcode encoding:NSUTF8StringEncoding], isotype);
     [self sendBarcodeData:barcode type:@"NA"];
     
