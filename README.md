@@ -21,6 +21,8 @@ SocketCDV.initDT(handleBarcode);
 
 ```
 
+`Barcode data: 4548718727797`
+
 ## Device support
 All what the framework supports. Its needs to be downloaded sepatetly from socket mobiles developer portal.
 
