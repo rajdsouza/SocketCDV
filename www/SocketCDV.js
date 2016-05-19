@@ -1,4 +1,3 @@
-cordova.define("au.com.rcgcorp.socketcdv.SocketCDV", function(require, exports, module) {
 var argscheck = require('cordova/argscheck'),
     channel = require('cordova/channel'),
     utils = require('cordova/utils'),
@@ -24,4 +23,3 @@ SocketCDV.prototype.initDT = function(barcodeCallback) {
 
 
 module.exports = new SocketCDV();
-});
