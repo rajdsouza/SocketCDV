@@ -27,13 +27,14 @@ SocketCDV.initDT(handleBarcode);
 ## Device support
 Any device supported by the Socket SDK framework.
 
-## Supported features:
+## Supported features
 
 * Automatically connects device when available
 * Reads barcode and send it to barcodeData function
 
-Future Feature Improvements:
-1. Add a custom function which can recieve barcode read event
+## Future Feature Improvements 
+
+1. ~~Add a custom function which can recieve barcode read event~~
 2. A way to display the device which is connected
 
 
